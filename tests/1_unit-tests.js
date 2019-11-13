@@ -6,15 +6,72 @@ suite('Unit Tests', function(){
   // Make ALL tests pass
   // !! Don't scramble the Assertions. We rely on their order to check the results !!
   suite('Basic Assertions', function() {
-     assert.isNull(null) /**will always fail. Change it into something more useful... **/
+    /** assert.fail() will always fail. Change it into something more useful... **/
   
     /** 1 - Use assert.isNull() or assert.isNotNull() to make the tests pass. **/
     test('#isNull, #isNotNull', function(){
-      assert.isNUll(null, 'this is an optional error description - e.g. null is null');
+      assert.isNull(null, 'this is an optional error description - e.g. null is null');
       assert.isNotNull( 1, '1 is not null');
     });
   
-   
+    /** 2 - Use assert.isDefined() or assert.isUndefined() to make the tests pass. **/
+    test('#isDefined, #isUndefined', function(){
+      assert.isDefined( null, 'null is not undefined');
+      assert.isUndefined( undefined, 'undefined IS undefined');
+      assert.isDefined( 'hello', 'a string is not undefined' );
+    });
+  
+    /** 3 - Use assert.isOk() or assert.isNotOk() to make the tests pass. **/
+    // .isOk(truthy) and .isNotOk(falsey) will pass
+    test('#isOk, #isNotOk', function(){
+      assert.isNotOk( null, 'null is falsey');
+      assert.isOK( "I'm truthy", 'a string is truthy');
+      assert.isOk( true, 'true is truthy' );
+    });
+  
+    /** 4 - Use assert.isTrue() or assert.isNotTrue() to make the tests pass. **/
+    // .isTrue(true) and .isNotTrue(everything else) will pass.
+    // .isFalse() and .isNotFalse() also exist.
+    test('#isTrue, #isNotTrue', function(){
+      assert.fail( true, 'true is true');
+      assert.fail( !!'double negation', 'double negation of a truthy is true');
+      assert.fail({ value: 'truthy' }, 'A truthy object is NOT TRUE (neither is false...)' );
+    });
+  
+    // There are more assertions like these: .isNaN(), .isBoolean(), 
+    // and many others. Almost all the assertions in the chai library
+    // have their negative counterpart - e.g. .isNotBoolean(), ...
+  });
+  
+  // -----------------------------------------------------------------------------
+  
+  suite('Equality', function() {
+    /** 5 - .equal(), .notEqual() **/
+    // .equal() compares objects using '=='
+    test('#equal, #notEqual', function(){
+      assert.fail( 12, '12', 'numbers are coerced into strings with == ');
+      assert.fail( {value: 1}, {value:1}, '== compares object references');
+      assert.fail( 6 * '2', '12', 'no more hints...');
+      assert.fail( 6 + '2', '12', 'type your error message if you want' );
+    });
+    /** 6 - .strictEqual(), .notStrictEqual() **/
+    // .strictEqual() compares objects using '==='
+    test('#strictEqual, #notStrictEqual', function(){
+      assert.fail( 6, '6' );
+      assert.fail( 6, 3*2 );
+      assert.fail( 6 * '2', 12 );
+      assert.fail( [1, 'a', {} ], [1, 'a', {}] );
+    });
+    /** 7 - .deepEqual(), .notDeepEqual() **/
+    // .deepEqual() asserts that two object are deep equal
+    test('#deepEqual, #notDeepEqual', function(){
+      assert.fail( { a: '1', b: 5 } , { b: 5, a: '1' }, "keys order doesn't matter" );
+      assert.fail( { a: [5, 6] }, { a: [6, 5] }, "array elements position does matter !!" );
+    });
+  });
+
+// -----------------------------------------------------------------------------
+  
 
   // This function is used in the tests. Don't Edit it.
   function weirdNumbers(delta) {
