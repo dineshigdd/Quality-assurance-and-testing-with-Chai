@@ -122,8 +122,8 @@ suite('Unit Tests', function(){
     
     /** 12 - #include vs #notInclude **/
     test('Array #include, #notInclude', function() {
-      assert.include(winterMonths, 'jul', "It's summer in july...");
-      assert.notInclude(backendLanguages, 'javascript', 'JS is a backend language !!');
+      assert.notInclude(winterMonths, 'jul', "It's summer in july...");
+      assert.include(backendLanguages, 'javascript', 'JS is a backend language !!');
     });
   });
 
@@ -137,24 +137,24 @@ suite('Unit Tests', function(){
     
     /** 13 - #isString asserts that the actual value is a string. **/
     test('#isString, #isNotString', function() {
-      assert.fail(Math.sin(Math.PI/4), 'a float is not a string');
-      assert.fail(process.env.PATH, 'env vars are strings (or undefined)');
-      assert.fail(JSON.stringify({type: 'object'}), 'a JSON is a string');
+      assert.isNotString(Math.sin(Math.PI/4), 'a float is not a string');
+      assert.isString(process.env.PATH, 'env vars are strings (or undefined)');
+      assert.isString(JSON.stringify({type: 'object'}), 'a JSON is a string');
     });
     
     /** 14 - #include (on #notInclude ) works for strings too !! **/
     // It asserts that the actual string contains the expected substring
     test('String #include, #notInclude', function() {
-      assert.fail('Arrow', 'row', "Arrow contains row...");
-      assert.fail('dart', 'queue', "But a dart doesn't contain a queue");
+      assert.include('Arrow', 'row', "Arrow contains row...");
+      assert.notInclude('dart', 'queue', "But a dart doesn't contain a queue");
     });
     
     /** 15 - #match Asserts that the actual value **/
     // matches the second argument regular expression.
     test('#match, #notMatch', function() {
       var regex =  /^#\sname\:\s[\w\s]+,\sage\:\s\d+\s?$/;
-      assert.fail(formatPeople('John Doe', 35), regex);
-      assert.fail(formatPeople('Paul Smith III', 'twenty-four'), regex);
+      assert.match(formatPeople('John Doe', 35), regex);
+      assert.notMatch(formatPeople('Paul Smith III', 'twenty-four'), regex);
     });
   });
   
@@ -182,9 +182,9 @@ suite('Unit Tests', function(){
     /** 16 - #property asserts that the actual object has a given property. **/
     // Use #property or #notProperty where appropriate
     test('#property, #notProperty', function() {
-      assert.fail(myCar, 'wings', 'A car has not wings');
-      assert.fail(airlinePlane, 'engines', 'planes have engines');
-      assert.fail(myCar, 'wheels', 'Cars have wheels');
+      assert.property(myCar, 'wings', 'A car has not wings');
+      assert.notProperty(airlinePlane, 'engines', 'planes have engines');
+      assert.property(myCar, 'wheels', 'Cars have wheels');
     });
 
     test('#typeOf, #notTypeOf', function() {
