@@ -57,16 +57,16 @@ suite('Unit Tests', function(){
     /** 6 - .strictEqual(), .notStrictEqual() **/
     // .strictEqual() compares objects using '==='
     test('#strictEqual, #notStrictEqual', function(){
-      assert.fail( 6, '6' );
-      assert.fail( 6, 3*2 );
-      assert.fail( 6 * '2', 12 );
-      assert.fail( [1, 'a', {} ], [1, 'a', {}] );
+      assert.notStrictEqual( 6, '6' );
+      assert.strictEqual( 6, 3*2 );
+      assert.strictEqual( 6 * '2', 12 );
+      assert.notStrictEqual( [1, 'a', {} ], [1, 'a', {}] );
     });
     /** 7 - .deepEqual(), .notDeepEqual() **/
     // .deepEqual() asserts that two object are deep equal
     test('#deepEqual, #notDeepEqual', function(){
-      assert.fail( { a: '1', b: 5 } , { b: 5, a: '1' }, "keys order doesn't matter" );
-      assert.fail( { a: [5, 6] }, { a: [6, 5] }, "array elements position does matter !!" );
+      assert.deepEqual( { a: '1', b: 5 } , { b: 5, a: '1' }, "keys order doesn't matter" );
+      assert.notDeepEqual( { a: [5, 6] }, { a: [6, 5] }, "array elements position does matter !!" );
     });
   });
 
@@ -82,18 +82,18 @@ suite('Unit Tests', function(){
     
     /** 8 - .isAbove() => a > b , .isAtMost() => a <= b **/
     test('#isAbove, #isAtMost', function() {
-      assert.fail('hello'.length , 5);
-      assert.fail(1, 0);
-      assert.fail(Math.PI, 3);
-      assert.fail(1 - Math.random(), 1);
+      assert.isAtMost('hello'.length , 5);
+      assert.isAbove(1, 0);
+      assert.isAbove(Math.PI, 3);
+      assert.isAtMost(1 - Math.random(), 1);
     });
 
     /** 9 - .isBelow() => a < b , .isAtLeast =>  a >= b **/
     test('#isBelow, #isAtLeast', function() {
-      assert.fail('world'.length , 5);
-      assert.fail(2*Math.random(), 0);
-      assert.fail(5 % 2, 2);
-      assert.fail(2/3, 1);
+      assert.isAtLeast('world'.length , 5);
+      assert.isAtLeast(2*Math.random(), 0);
+      assert.isBelow(5 % 2, 2);
+      assert.isBelow(2/3, 1);
     });
 
     /** 10 - .approximately **/
