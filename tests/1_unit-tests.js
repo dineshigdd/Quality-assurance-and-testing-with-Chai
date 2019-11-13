@@ -102,8 +102,8 @@ suite('Unit Tests', function(){
     // Choose the minimum range (3rd parameter) to make the test always pass
     // it should be less than 1
     test('#approximately', function() {
-      assert.approximately(weirdNumbers(0.5) , 1, /*edit this*/ 0 );
-      assert.approximately(weirdNumbers(0.2) , 1, /*edit this*/ 0 );
+      assert.approximately(weirdNumbers(0.5) , 1, /*edit this*/ 0.5);
+      assert.approximately(weirdNumbers(0.2) , 1, /*edit this*/ 0.8);
     });
   });
 
@@ -116,14 +116,14 @@ suite('Unit Tests', function(){
     
     /** 11 - #isArray vs #isNotArray **/
     test('#isArray, #isNotArray', function() {
-      assert.fail('isThisAnArray?'.split(''), 'String.prototype.split() returns an Array');
-      assert.fail([1,2,3].indexOf(2), 'indexOf returns a number.');
+      assert.isArray('isThisAnArray?'.split(''), 'String.prototype.split() returns an Array');
+      assert.isNotArray([1,2,3].indexOf(2), 'indexOf returns a number.');
     });
     
     /** 12 - #include vs #notInclude **/
     test('Array #include, #notInclude', function() {
-      assert.fail(winterMonths, 'jul', "It's summer in july...");
-      assert.fail(backendLanguages, 'javascript', 'JS is a backend language !!');
+      assert.include(winterMonths, 'jul', "It's summer in july...");
+      assert.notInclude(backendLanguages, 'javascript', 'JS is a backend language !!');
     });
   });
 
