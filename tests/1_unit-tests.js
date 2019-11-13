@@ -25,7 +25,7 @@ suite('Unit Tests', function(){
     // .isOk(truthy) and .isNotOk(falsey) will pass
     test('#isOk, #isNotOk', function(){
       assert.isNotOk( null, 'null is falsey');
-      assert.isOK( "I'm truthy", 'a string is truthy');
+      assert.isOk( "I'm truthy", 'a string is truthy');
       assert.isOk( true, 'true is truthy' );
     });
   
@@ -33,9 +33,9 @@ suite('Unit Tests', function(){
     // .isTrue(true) and .isNotTrue(everything else) will pass.
     // .isFalse() and .isNotFalse() also exist.
     test('#isTrue, #isNotTrue', function(){
-      assert.fail( true, 'true is true');
-      assert.fail( !!'double negation', 'double negation of a truthy is true');
-      assert.fail({ value: 'truthy' }, 'A truthy object is NOT TRUE (neither is false...)' );
+      assert.isTrue( true, 'true is true');
+      assert.isTrue( !!'double negation', 'double negation of a truthy is true');
+      assert.isNotTrue({ value: 'truthy' }, 'A truthy object is NOT TRUE (neither is false...)' );
     });
   
     // There are more assertions like these: .isNaN(), .isBoolean(), 
@@ -49,10 +49,10 @@ suite('Unit Tests', function(){
     /** 5 - .equal(), .notEqual() **/
     // .equal() compares objects using '=='
     test('#equal, #notEqual', function(){
-      assert.fail( 12, '12', 'numbers are coerced into strings with == ');
-      assert.fail( {value: 1}, {value:1}, '== compares object references');
-      assert.fail( 6 * '2', '12', 'no more hints...');
-      assert.fail( 6 + '2', '12', 'type your error message if you want' );
+      assert.equal( 12, '12', 'numbers are coerced into strings with == ');
+      assert.equal( {value: 1}, {value:1}, '== compares object references');
+      assert.equal( 6 * '2', '12', 'no more hints...');
+      assert.equal( 6 + '2', '12', 'type your error message if you want' );
     });
     /** 6 - .strictEqual(), .notStrictEqual() **/
     // .strictEqual() compares objects using '==='
