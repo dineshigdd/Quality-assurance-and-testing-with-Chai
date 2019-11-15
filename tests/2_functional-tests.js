@@ -125,7 +125,7 @@ suite('Functional Tests', function() {
         .end(function(err, res){
           
          assert.equal(res.status,200,'response status should be 200');
-         assert.equal(res.type, 'application/json', "Response should be json");
+          assert.equal(res.type, 'application/json', "Response should be json");
           /** your tests here **/
           assert.equal(res.body.name, 'Cristoforo'); 
           assert.equal(res.body.surname, 'Colombo'); 
@@ -137,21 +137,19 @@ suite('Functional Tests', function() {
       // Try it again. This time without help !!
       test('send {surname: "da Verrazzano"}', function(done) {
         /** place the chai-http request code here... **/
-         chai.request(server)
-          .put('/travellers')
+        chai.request(server)
+         .put('/travellers')
         /** place your tests inside the callback **/
-          .send({"surname": 'da Verrazzano'})
-          .end(function(err,res){           
-            
-              assert.equal(res.status,200,'response status should be 200');
-              assert.equal(res.type, 'application/json', "Response should be json");
-              assert.equal(res.body.name, 'Giovanni'); 
-              assert.equal(res.body.surname, 'da Verrazzano'); 
-              done();
-        });
+          .send({surname: 'da Verrazzano'})
+          .end(function(err, res){
+          
+        })
+        assert.fail(); // remove this after adding tests
+        done();
       });
-
     });
+
+  });
 
   // In the next challenges we are going to simulate the human interaction with
   // a page using a device called 'Headless Browser'. A headless browser is a web
