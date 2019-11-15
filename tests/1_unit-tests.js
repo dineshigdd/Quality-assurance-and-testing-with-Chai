@@ -192,11 +192,11 @@ suite('Unit Tests', function(){
       /** 17 #typeOf asserts that value’s type is the given string, **/
       // as determined by Object.prototype.toString.
       // Use #typeOf or #notTypeOf where appropriate
-      assert.notTypeOf(myCar,'object');
+      assert.typeOf(myCar,'object');
       assert.typeOf(myCar.model, 'string');
-      assert.typeOf(airlinePlane.wings, 'string');
-      assert.notTypeOf(airlinePlane.engines, 'array');
-      assert.notTypeOf(myCar.wheels, 'number');
+      assert.notTypeOf(airlinePlane.wings, 'string');
+      assert.typeOf(airlinePlane.engines, 'array');
+      assert.typeOf(myCar.wheels, 'number');
     });
 
     test('#instanceOf, #notInstanceOf', function() {
